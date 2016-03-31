@@ -3,6 +3,10 @@ package com.mycom.myapp;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Resource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
 //import java.text.DateFormat;
 //import java.util.Date;
 //import java.util.Locale;
@@ -43,9 +47,12 @@ public class HomeController {
 		return "home";
 	}*/
 	
-	/*
-	 * GET
-	 */
+	//@Resource(name = "innerList")
+	//private ListWrapper myList;
+	
+	@Resource(name = "utilList")
+	private List<String> myList;
+	
 	private List<String> list;
 	private HomeController(){
 		list = new ArrayList<String>();
@@ -53,11 +60,19 @@ public class HomeController {
 		list.add("John");
 		list.add("Ray");
 	}
-
+	
+	//@Autowired
+	//private InitialValue user = new InitialValue();
+	
+	/*
+	 * GET
+	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String getDefaultMovie(ModelMap model) {
 		
-		model.addAttribute("person", list);
+		//model.addAttribute("person", list);
+		//return "home";
+		model.addAttribute("person", myList);
 		return "home";
 
 	}
@@ -122,5 +137,5 @@ public class HomeController {
 		return "DELETE done";
 			
 	}
-	
+
 }
