@@ -1,11 +1,15 @@
 package com.mycom.myapp;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+//import javax.servlet.ServletContextEvent;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+import org.springframework.web.context.support.XmlWebApplicationContext;
 
 //import java.text.DateFormat;
 //import java.util.Date;
@@ -49,28 +53,26 @@ public class HomeController {
 	
 	
 	
-	@Resource(name = "innerList")
+	/*@Resource(name = "innerList")
 	private List<String> myList;
+	*/
 	
-	@Resource(name = "shopList")
-	private List<Shop> spList;
+	@Resource(name = "innerList")
+	private List<Person> myList;
 	
-	/*@Override
-	public String toString() {
-		return "SP lists=" + spList;
-	}*/
+	
 	
 	/*
 	 * GET
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public @ResponseBody List<Shop> getDefaultMovie() {
+	public @ResponseBody List<Person> getDefaultMovie() {
 		
 		//model.addAttribute("person", myList);
 		//return "home";
 		
 		
-		return spList;
+		return myList;
 
 	}
 	
@@ -87,12 +89,24 @@ public class HomeController {
 		shop.setName(name);
 		
 		return shop;*/
-		int index = Integer.parseInt(id);
+		/*XmlWebApplicationContext context = new XmlWebApplicationContext();
+		context.setConfigLocation("/WEB-INF/spring/appServlet/servlet-context.xml");
+		context.setServletContext(event.getServletContext());
+        context.refresh();*/
+		//ApplicationContext context = new ClassPathXmlApplicationContext("*/servlet-context.xml");
 		
-		if(spList.contains(index))
-			return spList.get(index);
-		else
-			return "no this shop";
+		ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("*/servlet-context.xml");
+		
+		//怎麼改成相對路徑?
+		//ApplicationContext context = new FileSystemXmlApplicationContext("E:/workspace/Rex_MVC/src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml");
+		
+		Object test = context.getBean(id);
+		
+		/*
+		if(myList.contains(person))
+			return person;
+		else*/
+			return test;
 
 	}
 	
@@ -104,8 +118,8 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.POST, produces={"application/json"})
 	public String postMovie(@RequestParam String name, ModelMap model){
 		
-		myList.add(name);
-		model.addAttribute("person", "POST already");
+		/*myList.add(name);
+		model.addAttribute("person", "POST already");*/
 		return "home";
 	}
 	
@@ -115,7 +129,7 @@ public class HomeController {
 	@RequestMapping(value = "/{name}", method = RequestMethod.PUT, produces={"application/json"})
 	public @ResponseBody String putMovie(@PathVariable String name, ModelMap model){
 		
-		myList.add(name);
+		/*myList.add(name);*/
 		return "PUT already";
 		
 	}
@@ -126,9 +140,9 @@ public class HomeController {
 	@RequestMapping(value = "/{name}", method = RequestMethod.DELETE, produces={"application/json"})
 	public @ResponseBody String deleteMovie(@PathVariable String name, ModelMap model){
 		
-		if(myList.contains(name))
+		/*if(myList.contains(name))
 			myList.remove(name);
-		
+		*/
 		return "DELETE done";
 			
 	}

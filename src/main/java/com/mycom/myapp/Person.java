@@ -1,17 +1,13 @@
 package com.mycom.myapp;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.codehaus.jackson.annotate.JsonAutoDetect;
 
 //@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class Shop {
+public class Person {
 	private String name;
 	private String address; 
+	private int age;
 	
-	
-	public Shop(){
+	public Person(){
 		
 	}
 
@@ -31,5 +27,11 @@ public class Shop {
 		this.address = address;
 	}
 	
+	public int getAge(){
+		return this.age;
+	}
 	
+	public void setAge(int age){
+		this.age = age;
+	}
 }
