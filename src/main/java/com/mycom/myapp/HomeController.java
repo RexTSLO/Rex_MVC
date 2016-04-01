@@ -47,44 +47,52 @@ public class HomeController {
 		return "home";
 	}*/
 	
-	//@Resource(name = "innerList")
-	//private ListWrapper myList;
 	
-	@Resource(name = "utilList")
+	
+	@Resource(name = "innerList")
 	private List<String> myList;
 	
-	private List<String> list;
-	private HomeController(){
-		list = new ArrayList<String>();
-		list.add("Tom");
-		list.add("John");
-		list.add("Ray");
-	}
+	@Resource(name = "shopList")
+	private List<Shop> spList;
 	
-	//@Autowired
-	//private InitialValue user = new InitialValue();
+	/*@Override
+	public String toString() {
+		return "SP lists=" + spList;
+	}*/
 	
 	/*
 	 * GET
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String getDefaultMovie(ModelMap model) {
+	public @ResponseBody List<Shop> getDefaultMovie() {
 		
-		//model.addAttribute("person", list);
+		//model.addAttribute("person", myList);
 		//return "home";
-		model.addAttribute("person", myList);
-		return "home";
+		
+		
+		return spList;
 
 	}
 	
-	@RequestMapping(value = "/{name}", method = RequestMethod.GET)
-	public String getMovie(@PathVariable String name, ModelMap model) {
-		if(list.contains(name))
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces={"application/json"})
+	public @ResponseBody Object getMovie(@PathVariable String id) {
+		/*if(myList.contains(name))
 			model.addAttribute("person", name);
 		else
 			model.addAttribute("person", "No this guy");
 		
-		return "home";
+		return "home";*/
+		
+		/*Shop shop = new Shop();
+		shop.setName(name);
+		
+		return shop;*/
+		int index = Integer.parseInt(id);
+		
+		if(spList.contains(index))
+			return spList.get(index);
+		else
+			return "no this shop";
 
 	}
 	
@@ -93,10 +101,10 @@ public class HomeController {
 	/*
 	 * POST
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.POST)
+	@RequestMapping(value = "/", method = RequestMethod.POST, produces={"application/json"})
 	public String postMovie(@RequestParam String name, ModelMap model){
 		
-		list.add(name);
+		myList.add(name);
 		model.addAttribute("person", "POST already");
 		return "home";
 	}
@@ -104,35 +112,22 @@ public class HomeController {
 	/*
 	 * PUT
 	 */
-	@RequestMapping(value = "/{name}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/{name}", method = RequestMethod.PUT, produces={"application/json"})
 	public @ResponseBody String putMovie(@PathVariable String name, ModelMap model){
 		
-		list.add(name);
-		//model.addAttribute("movie", "PUT already");
+		myList.add(name);
 		return "PUT already";
 		
-		//model.addAttribute("movie", "HI PUT");
-		//return "home";
-		/*String str = new String("HI REX");
-		String str2 = new String("no put");
-		
-		if(name.equals("rex"))
-			return str;
-		else
-			return str2;*/
 	}
 	
 	/*
 	 * DELETE
 	 */
-	@RequestMapping(value = "/{name}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{name}", method = RequestMethod.DELETE, produces={"application/json"})
 	public @ResponseBody String deleteMovie(@PathVariable String name, ModelMap model){
 		
-		//model.addAttribute("movie", "HI DELETE");
-		//return "homeless";
-		
-		if(list.contains(name))
-			list.remove(name);
+		if(myList.contains(name))
+			myList.remove(name);
 		
 		return "DELETE done";
 			

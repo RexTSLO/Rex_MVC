@@ -23,20 +23,22 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<!-- <beans:bean id="testBean" class="com.mycom.myapp.ListWrapper">
-		<beans:property name="innerList">
-			<beans:list>
-				<beans:value>Tom</beans:value>
-				<beans:value>Obama</beans:value>
-			</beans:list>
-		</beans:property>
-	</beans:bean>
-	-->
 	
-	<util:list id="utilList" value-type="java.lang.String">
+	<util:list id="innerList" value-type="java.lang.String">
    	 	<beans:value>Ken</beans:value>
    	 	<beans:value>Tony</beans:value>
     	<beans:value>Robin</beans:value>
+	</util:list>
+ 	
+ 	<util:list id="shopList" value-type="java.lang.String">
+		<beans:bean id="100" class="com.mycom.myapp.Shop">
+			<beans:property name="name" value="Tom" />
+			<beans:property name="address" value="Taipei" />
+		</beans:bean>
+		<beans:bean id="200" class="com.mycom.myapp.Shop">
+			<beans:property name="name" value="John" />
+			<beans:property name="address" value="Tainan" />
+		</beans:bean>
 	</util:list>
  	
 	
