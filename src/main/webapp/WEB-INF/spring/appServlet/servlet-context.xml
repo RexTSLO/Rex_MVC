@@ -33,7 +33,6 @@
     	<beans:value>Robin</beans:value>
 	</util:list>
  	 -->
-<<<<<<< HEAD
  	
  	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
          <!-- setting maximum upload size -->
@@ -46,16 +45,6 @@
 		<beans:property name="age" value="18" />
 	</beans:bean> 
  	
-=======
- 	 
- 	 
- 	<beans:bean id="1" class="com.mycom.myapp.Person">
-		<beans:property name="name" value="Tom" />
-		<beans:property name="address" value="Taipei" />
-		<beans:property name="age" value="18" />
-	</beans:bean> 
- 	
->>>>>>> b6ad55eff7444d56314892767b17bd0b6509eb60
  	<beans:bean id="2" class="com.mycom.myapp.Person">
 		<beans:property name="name" value="John" />
 		<beans:property name="address" value="Tainan" />
