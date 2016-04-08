@@ -1,18 +1,20 @@
 package com.mycom.myapp;
 
-import java.util.ArrayList;
-import java.util.List;
+//改成註解寫法?
 
-import org.codehaus.jackson.annotate.JsonAutoDetect;
-
-//@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class Shop {
+public class Person {
 	private String name;
 	private String address; 
+	private int age;
 	
-	
-	public Shop(){
+	public Person(){
 		
+	}
+	
+	public Person(String name,String address,int age){
+		this.name = name;
+		this.address = address;
+		this.age = age;
 	}
 
 	public String getName(){
@@ -31,5 +33,11 @@ public class Shop {
 		this.address = address;
 	}
 	
+	public int getAge(){
+		return this.age;
+	}
 	
+	public void setAge(int age){
+		this.age = age;
+	}
 }

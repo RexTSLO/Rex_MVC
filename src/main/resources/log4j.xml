@@ -3,11 +3,23 @@
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
 
 	<!-- Appenders -->
-	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+	<!-- <appender name="console" class="org.apache.log4j.ConsoleAppender">
 		<param name="Target" value="System.out" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
 		</layout>
+	</appender>
+	 -->
+	<appender name="file" class="org.apache.log4j.RollingFileAppender">
+	   <param name="append" value="false" />
+	   <param name="maxFileSize" value="10KB" />
+	   <param name="maxBackupIndex" value="5" />
+	   <!-- in Tomcat log -->
+	   <param name="file" value="${catalina.home}/logs/myRexMVC.log" />
+	   <layout class="org.apache.log4j.PatternLayout">
+		<param name="ConversionPattern" 
+			value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />
+	   </layout>
 	</appender>
 	
 	<!-- Application Loggers -->
@@ -33,9 +45,15 @@
 	</logger>
 
 	<!-- Root Logger -->
-	<root>
+	<!-- <root>
 		<priority value="warn" />
 		<appender-ref ref="console" />
 	</root>
-	
+	 -->
+	 
+	<root>
+		<level value="INFO" />
+		<appender-ref ref="file" />
+	</root>
+	 
 </log4j:configuration>

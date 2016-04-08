@@ -4,16 +4,19 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
-
+	<aop:aspectj-autoproxy />
+	
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 
@@ -23,22 +26,34 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	
+	<!-- 
 	<util:list id="innerList" value-type="java.lang.String">
    	 	<beans:value>Ken</beans:value>
    	 	<beans:value>Tony</beans:value>
     	<beans:value>Robin</beans:value>
 	</util:list>
+ 	 -->
  	
- 	<util:list id="shopList" value-type="java.lang.String">
-		<beans:bean id="100" class="com.mycom.myapp.Shop">
-			<beans:property name="name" value="Tom" />
-			<beans:property name="address" value="Taipei" />
-		</beans:bean>
-		<beans:bean id="200" class="com.mycom.myapp.Shop">
-			<beans:property name="name" value="John" />
-			<beans:property name="address" value="Tainan" />
-		</beans:bean>
+ 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+         <!-- setting maximum upload size -->
+        <beans:property name="maxUploadSize" value="100000" />
+    </beans:bean>	 
+ 		 
+ 	<beans:bean id="1" class="com.mycom.myapp.Person">
+		<beans:property name="name" value="Tom" />
+		<beans:property name="address" value="Taipei" />
+		<beans:property name="age" value="18" />
+	</beans:bean> 
+ 	
+ 	<beans:bean id="2" class="com.mycom.myapp.Person">
+		<beans:property name="name" value="John" />
+		<beans:property name="address" value="Tainan" />
+		<beans:property name="age" value="20" />
+	</beans:bean>
+ 	 
+ 	<util:list id="innerList" value-type="java.lang.String">
+		<beans:ref bean="1" />
+		<beans:ref bean="2" />
 	</util:list>
  	
 	
