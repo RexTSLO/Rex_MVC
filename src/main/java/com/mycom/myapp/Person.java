@@ -1,7 +1,12 @@
 package com.mycom.myapp;
 
+<<<<<<< HEAD:src/main/java/com/mycom/myapp/Person.java
 //改成註解寫法?
 
+=======
+
+//@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+>>>>>>> b6ad55eff7444d56314892767b17bd0b6509eb60:src/main/java/com/mycom/myapp/Person.java
 public class Person {
 	private String name;
 	private String address; 
