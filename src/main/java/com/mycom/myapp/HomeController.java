@@ -31,34 +31,8 @@ import javax.annotation.Resource;
 @RestController
 public class HomeController {
 	
-	//private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
-	/*@RequestMapping(value = "/home/", method = RequestMethod.GET)
-	public String home(Locale locale) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		//DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		//String formattedDate = dateFormat.format(date);
-		logger.info("The time is {}",date );
-		
-		return "homepage";
-	}*/
-	
-	
-	
-	/*@Resource(name = "innerList")
-	private List<String> myList;
-	*/
-	
 	@Resource(name = "innerList")
 	private List<Person> myList;
-	
-	
 	
 	/*
 	 * GET
@@ -79,12 +53,13 @@ public class HomeController {
 		
 		//ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("*/servlet-context.xml");
 		
-		//怎麼改成相對路徑?
+		//怎麼用id get bean?怎麼改成相對路徑?
 		//ApplicationContext context = new FileSystemXmlApplicationContext("E:/workspace/Rex_MVC/src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml");
 		//ApplicationContext context = new FileSystemXmlApplicationContext("/Rex_MVC/src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml");
 		
 		//Object test = context.getBean(name);
 		//return test;
+		
 		//先用名字搜尋
 		for(Person person: myList){
 			if(person.getName().equals(name)){
